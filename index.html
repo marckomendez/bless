@@ -46,13 +46,13 @@
           </div>
         </div>
 
-        <div class="hero-card">
+        <div class="hero-card" onclick="openModal()" style="cursor: pointer;">
           <div class="hero-badge">Colección BLESS 2025</div>
           <div class="hero-photo"></div>
           <div class="hero-card-body">
             <h2>Vestidos de temporada</h2>
-            <p>Texturas suaves, tonos cálidos y detalles que enamoran.</p>
-            <span class="hero-price">Desde Q 349.00</span>
+            <p>Texturas suaves, tonos elegantes y detalles que deslumbran.</p>
+            <span class="hero-price">Desde Q 150.00</span>
           </div>
         </div>
       </div>
@@ -165,7 +165,7 @@
           </p>
           <div class="contact-info">
             <p><strong>WhatsApp:</strong> <span>+502 3779-6193</span></p>
-            <p><strong>Instagram:</strong> @bless.boutique</p>
+            <p><strong>Facebook:</strong> <a href="https://www.facebook.com/share/17X5Pm8bLU/" target="_blank" rel="noopener noreferrer">BLESS Boutique</a></p>
             <p><strong>Horario:</strong> Lunes a domingo · 9:00 am – 8:00 pm</p>
           </div>
         </div>
@@ -196,6 +196,39 @@
     </div>
   </footer>
 
+  <!-- Modal del vestido -->
+  <div id="vestidoModal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <button class="modal-nav modal-prev" onclick="changeSlide(-1)">❮</button>
+      <button class="modal-nav modal-next" onclick="changeSlide(1)">❯</button>
+      <div class="modal-body">
+        <div class="modal-image">
+          <img id="modalImage" src="img/vestidodetemporada.jpg" alt="Vestido BLESS">
+        </div>
+        <div class="modal-info">
+          <span class="modal-badge">Colección BLESS 2025</span>
+          <h2 id="modalTitle">Vestido Negro Elegante de Temporada</h2>
+          <p class="modal-price" id="modalPrice">Q 165.00</p>
+          <div class="modal-description" id="modalDescription">
+            <h3>Descripción</h3>
+            <p>Vestido largo con tirantes ajustables, confeccionado en tela suave con textura brillante que realza tu silueta. Perfecto para eventos especiales, cenas elegantes o cualquier ocasión donde quieras destacar con estilo.</p>
+            <h3>Características</h3>
+            <ul>
+              <li>Diseño minimalista y elegante</li>
+              <li>Tela de alta calidad con acabado brillante</li>
+              <li>Tirantes ajustables para mayor comodidad</li>
+              <li>Largo midi ideal para diversas ocasiones</li>
+              <li>Disponible en talla única (se adapta de S a L)</li>
+            </ul>
+          </div>
+          <div class="modal-indicators" id="modalIndicators"></div>
+          <a id="modalWhatsApp" href="https://wa.me/+50237796193?text=Hola%20BLESS%2C%20me%20interesa%20el%20vestido%20negro%20elegante%20de%20temporada." class="btn-primary" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
  <a
     href="https://wa.me/+50237796193?text=Hola%20BLESS%2C%20quiero%20hacer%20un%20pedido."
     class="whatsapp-float"
@@ -203,11 +236,145 @@
     rel="noopener"
     aria-label="Chat en WhatsApp con BLESS"
   >
-    <span>W</span>
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 0C7.164 0 0 7.164 0 16c0 2.828.738 5.484 2.024 7.784L0.7 30.468c-.164.616.304 1.16.928 1.08l7.876-1.012C11.572 31.488 13.716 32 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0z" fill="#25D366"/>
+      <path d="M25.312 22.596c-.336 1.476-1.976 2.7-3.236 2.804-.86.068-1.98.124-5.732-1.228-4.812-1.732-7.92-6.6-8.164-6.904-.236-.304-1.948-2.584-1.948-4.932 0-2.348 1.236-3.504 1.672-3.984.436-.48 1.012-.608 1.344-.608.336 0 .672.004.968.02.308.016.724-.12 1.132 1.028.408 1.148 1.4 3.408 1.524 3.656.124.248.208.54.044.86-.164.316-.344.516-.564.796-.22.28-.46.624-.656.836-.22.236-.448.492-.192.964.256.472 1.14 1.876 2.448 3.036 1.684 1.492 3.1 1.956 3.532 2.176.436.22.688.184.94-.112.252-.296.856-1.004 1.088-1.348.232-.344.464-.288.784-.172.32.116 2.036.96 2.384 1.136.348.176.58.264.664.408.084.144.084.832-.252 2.308z" fill="white"/>
+    </svg>
   </a>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Datos de los vestidos
+    const vestidos = [
+      {
+        imagen: 'img/vestidodetemporada.jpg',
+        titulo: 'Vestido Negro Elegante de Temporada',
+        precio: 'Q 165.00',
+        descripcion: `
+          <h3>Descripción</h3>
+          <p>Vestido largo con tirantes ajustables, confeccionado en tela suave con textura brillante que realza tu silueta. Perfecto para eventos especiales, cenas elegantes o cualquier ocasión donde quieras destacar con estilo.</p>
+          <h3>Características</h3>
+          <ul>
+            <li>Diseño minimalista y elegante</li>
+            <li>Tela de alta calidad con acabado brillante</li>
+            <li>Tirantes ajustables para mayor comodidad</li>
+            <li>Largo midi ideal para diversas ocasiones</li>
+            <li>Disponible en talla única (se adapta de S a L)</li>
+          </ul>
+        `,
+        whatsapp: 'vestido%20negro%20elegante%20de%20temporada'
+      },
+      {
+        imagen: 'img/vestidoblanco.jpg',
+        titulo: 'Vestido Blanco Radiante',
+        precio: 'Q 150.00',
+        descripcion: `
+          <h3>Descripción</h3>
+          <p>Vestido blanco elegante con un diseño fresco y sofisticado. Su corte favorecedor y tela de calidad lo hacen ideal para eventos diurnos, fiestas de jardín o cualquier celebración especial donde quieras lucir radiante.</p>
+          <h3>Características</h3>
+          <ul>
+            <li>Color blanco puro y elegante</li>
+            <li>Tela ligera y cómoda</li>
+            <li>Corte favorecedor para todo tipo de cuerpo</li>
+            <li>Perfecto para eventos diurnos y nocturnos</li>
+            <li>Disponible en talla única (se adapta de S a L)</li>
+          </ul>
+        `,
+        whatsapp: 'vestido%20blanco%20radiante'
+      },
+      {
+        imagen: 'img/vestidoazul.jpg',
+        titulo: 'Vestido Azul Serenidad',
+        precio: 'Q 170.00',
+        descripcion: `
+          <h3>Descripción</h3>
+          <p>Vestido azul elegante que combina sofisticación y comodidad. Su tono sereno y acabado impecable lo convierten en la elección perfecta para destacar en cualquier evento especial con un toque de distinción.</p>
+          <h3>Características</h3>
+          <ul>
+            <li>Tono azul elegante y versátil</li>
+            <li>Diseño moderno y sofisticado</li>
+            <li>Tela de excelente calidad</li>
+            <li>Ideal para eventos formales e informales</li>
+            <li>Disponible en talla única (se adapta de S a L)</li>
+          </ul>
+        `,
+        whatsapp: 'vestido%20azul%20serenidad'
+      },
+      {
+        imagen: 'img/vestidoverde.jpg',
+        titulo: 'Vestido Verde Esmeralda',
+        precio: 'Q 160.00',
+        descripcion: `
+          <h3>Descripción</h3>
+          <p>Vestido verde esmeralda que irradia elegancia y frescura. Su color vibrante y diseño impecable te harán brillar en cualquier ocasión especial, desde cenas románticas hasta eventos sociales importantes.</p>
+          <h3>Características</h3>
+          <ul>
+            <li>Color verde esmeralda llamativo</li>
+            <li>Diseño elegante y favorecedor</li>
+            <li>Tela suave y de calidad premium</li>
+            <li>Perfecto para destacar con estilo</li>
+            <li>Disponible en talla única (se adapta de S a L)</li>
+          </ul>
+        `,
+        whatsapp: 'vestido%20verde%20esmeralda'
+      }
+    ];
+
+    let currentSlide = 0;
+
+    function openModal() {
+      currentSlide = 0;
+      updateSlide();
+      document.getElementById('vestidoModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(event) {
+      if (!event || event.target.classList.contains('modal') || event.target.classList.contains('modal-close')) {
+        document.getElementById('vestidoModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    function changeSlide(direction) {
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = vestidos.length - 1;
+      if (currentSlide >= vestidos.length) currentSlide = 0;
+      updateSlide();
+    }
+
+    function updateSlide() {
+      const vestido = vestidos[currentSlide];
+      document.getElementById('modalImage').src = vestido.imagen;
+      document.getElementById('modalTitle').textContent = vestido.titulo;
+      document.getElementById('modalPrice').textContent = vestido.precio;
+      document.getElementById('modalDescription').innerHTML = vestido.descripcion;
+      document.getElementById('modalWhatsApp').href = `https://wa.me/+50237796193?text=Hola%20BLESS%2C%20me%20interesa%20el%20${vestido.whatsapp}.`;
+      
+      // Actualizar indicadores
+      const indicatorsContainer = document.getElementById('modalIndicators');
+      indicatorsContainer.innerHTML = '';
+      for (let i = 0; i < vestidos.length; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'indicator-dot' + (i === currentSlide ? ' active' : '');
+        dot.onclick = () => {
+          currentSlide = i;
+          updateSlide();
+        };
+        indicatorsContainer.appendChild(dot);
+      }
+    }
+
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      } else if (document.getElementById('vestidoModal').style.display === 'flex') {
+        if (event.key === 'ArrowLeft') changeSlide(-1);
+        if (event.key === 'ArrowRight') changeSlide(1);
+      }
+    });
   </script>
 </body>
 </html>
